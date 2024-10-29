@@ -25,11 +25,11 @@ function main() {
                 const readings = []
                 for (const element of $('dd.kanji-details__main-readings-list')) {
                     const data = $(element).text().trim().split('、').map(s => s.trim())
-                    readings.push(...data)
+                    readings.push(data.join(','))
                 }
-                const newLine = `${char}:${definitions.join(',')}:${readings.join(',')}\n`
-                result += newLine
-                console.debug(`${newLine} | ${i + 1} / ${lines.length} (${(i + 1) / lines.length})`)
+                const newLine = `${char}:${definitions.join(',')}:${readings.join(':')}`
+                result += newLine + '\n'
+                console.debug(`${newLine} | ${i + 1} / ${lines.length} (${((i + 1) / lines.length).toFixed(2)}%)`)
             } else {
                 console.error(JSON.stringify(response))
                 write('../out/output.scrape.txt', result, { encoding: 'utf-8' }, err => { if (err) throw err })
