@@ -29,7 +29,7 @@ function main() {
                 }
                 const newLine = `${char}:${definitions.join(',')}:${readings.join(':')}`
                 result += newLine + '\n'
-                console.debug(`${newLine} | ${i + 1} / ${lines.length} (${((i + 1) / lines.length).toFixed(2)}%)`)
+                console.debug(`${newLine} | ${i + 1} / ${lines.length} (${((i + 1) / lines.length * 100).toFixed(2)}%)`)
             } else {
                 console.error(JSON.stringify(response))
                 write('../out/output.scrape.txt', result, { encoding: 'utf-8' }, err => { if (err) throw err })
